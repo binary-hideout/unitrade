@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>62643385721-18k4n7l7sdcmptiu550o64i997q8prf9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.62643385721-18k4n7l7sdcmptiu550o64i997q8prf9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAJs44HngpL6RG1N1fbngyt11NHy6xDqtU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>62643385721</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.uanlstudents.Unitrade</string>
+	<key>PROJECT_ID</key>
+	<string>unitrade-4e06a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unitrade-4e06a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:62643385721:ios:43bbd0edb4c48eb118eba8</string>
+	<key>DATABASE_URL</key>
+	<string>https://unitrade-4e06a.firebaseio.com</string>
+</dict>
+</plist>

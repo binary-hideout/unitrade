@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "62643385721",
+    "firebase_url": "https://unitrade-4e06a.firebaseio.com",
+    "project_id": "unitrade-4e06a",
+    "storage_bucket": "unitrade-4e06a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62643385721:android:a3c630eadee0ef0118eba8",
+        "android_client_info": {
+          "package_name": "com.uanlstudents.unitrade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62643385721-efokc2d43uu2a6i7cmvrfb9fv377vb4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXCfh_PtRMggm36I36MXRJQRvdrj-1TwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62643385721-efokc2d43uu2a6i7cmvrfb9fv377vb4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
