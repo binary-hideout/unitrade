@@ -4,66 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/zarpazo"
+    android:backgroundTint="@android:color/darker_gray"
     tools:context=".Login">
 
     <EditText
+
         android:id="@+id/edtxt_nom_usu"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:hint="Nombre de usuario"
-        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
+        android:hint="Nombre de usuario o correo"
+        android:textColorHint="@android:color/holo_orange_dark"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/imageView"></EditText>
 
 
     <EditText
         android:id="@+id/edtxt_contra_usu"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:hint="Contraseña"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
+        android:hint="Contraseña"
+        android:textColorHint="@android:color/holo_orange_dark"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtxt_nom_usu"></EditText>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="UniTrade"
-        android:textSize="32sp"
-        android:textColor="@android:color/holo_orange_light"
-        android:textStyle="bold"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="280dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/unitrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <Button
         android:id="@+id/btn_a_registrarse"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/botoncircular"
         android:layout_marginTop="32dp"
+        android:background="@drawable/botoncircular"
         android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtxt_contra_usu" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_iniciarses" />
 
     <Button
-        android:background="@drawable/botoncircular"
-        android:backgroundTint="@android:color/holo_red_light"
         android:id="@+id/btn_iniciarses"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/botoncircular"
+        android:backgroundTint="@android:color/holo_red_light"
         android:text="Ingresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_a_registrarse" />
+        app:layout_constraintTop_toBottomOf="@+id/edtxt_contra_usu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
