@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class Login extends AppCompatActivity {
     private EditText nom_usu, contra_usu;
     private Button iniciar, registrarse;
+    private String username, pssd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class Login extends AppCompatActivity {
                 a_registro();
             }
         });
+
+        //String username= nom_usu.getText().toString().trim();
+       // String pssd= contra_usu.getText().toString().trim();
     }
 
     private void iniciarsesion(){
