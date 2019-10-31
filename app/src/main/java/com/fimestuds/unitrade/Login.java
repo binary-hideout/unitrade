@@ -35,6 +35,8 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        getSupportActionBar().hide();
+
         //String username= nom_usu.getText().toString().trim();
        // String pssd= contra_usu.getText().toString().trim();
     }
