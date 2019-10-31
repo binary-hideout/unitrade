@@ -9,9 +9,9 @@
     <EditText
         android:id="@+id/edtxt_nom_usu"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:textColorHint="@android:color/black"
-        android:hint="Usuario o Correo"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario"
+        android:textColor="@android:color/black"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +21,8 @@
     <EditText
         android:id="@+id/edtxt_contra_usu"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:textColorHint="@android:color/black"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:hint="Contraseña"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"

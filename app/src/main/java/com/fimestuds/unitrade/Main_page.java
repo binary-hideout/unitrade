@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class main_page extends AppCompatActivity {
+public class Main_page extends AppCompatActivity {
 
     public ImageButton back;
     @Override
