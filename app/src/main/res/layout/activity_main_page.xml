@@ -34,7 +34,7 @@
 
            </ImageButton>
             <ImageButton
-                android:id="@+id/perfil"
+                android:id="@+id/btn_perfil"
                 android:layout_width="50dp"
                 android:src="@drawable/ic_person_black_24dp"
                 android:layout_height="50dp" >
