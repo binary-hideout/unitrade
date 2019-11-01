@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterViewFlipper;
 import android.widget.ImageButton;
@@ -26,9 +27,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main_page extends AppCompatActivity {
+public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.OnArticuloListener{
     private AdapterViewFlipper flip_inicio;
     private List<Articulo> arrayarticulos;
+    private List<Imagen> arrayimagenes;
     private FirebaseFirestore db;
     FloatingActionButton vender;
     RecyclerView recyclerView;
@@ -39,6 +41,7 @@ public class Main_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         perfil=findViewById(R.id.btn_perfil);
+        flip_inicio=findViewById(R.id.flipper);
         vender=findViewById(R.id.floatingvender);
         db=FirebaseFirestore.getInstance();
 
@@ -53,10 +56,11 @@ public class Main_page extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(arrayarticulos);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(arrayarticulos, this);
 
 
         addData();
+        addImages();
 
     }
 
@@ -76,6 +80,7 @@ public class Main_page extends AppCompatActivity {
 
         db.collection("articulos")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
+                .whereEqualTo("visible", 1)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -88,7 +93,11 @@ public class Main_page extends AppCompatActivity {
                                 arrayarticulos.add(articulo);
                             }
 
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(arrayarticulos);
+                            RecyclerViewAdapter adapter =
+                                    new RecyclerViewAdapter(
+                                            arrayarticulos,
+                                            Main_page.this
+                                    );
                             recyclerView.setAdapter(adapter);
                         } else {
                             Toast.makeText(Main_page.this, "Error", Toast.LENGTH_SHORT).show();
@@ -98,4 +107,48 @@ public class Main_page extends AppCompatActivity {
                     }
                 });
     }
+
+    public void addImages(){
+        db.collection("imagenes")
+                .whereEqualTo("idType", 1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            arrayimagenes = new ArrayList<>();
+                            //  int position =0;
+                            for (DocumentSnapshot doc : task.getResult()) {
+                                Imagen imagen = doc.toObject(Imagen.class);
+                                arrayimagenes.add(imagen);
+
+                            }
+                            setFlip_inicio();
+
+                        } else {
+                            Toast.makeText(Main_page.this, "No hay imagenes que cargar", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+
+
+    }
+
+    public void setFlip_inicio(){
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayimagenes);
+        flip_inicio.setAdapter(customAdapter);
+        flip_inicio.setFlipInterval(2700);
+        flip_inicio.setAutoStart(true);
+    }
+
+    @Override
+    public void onArticuloClick(int position, Articulo articulo) {
+        arrayarticulos.get(position);
+        //checar y mandar al negocio correspondiente
+        Intent vernegocio_com_intent = new Intent(this, Pantalla_venta.class);
+        vernegocio_com_intent.putExtra("articulo", (Parcelable) articulo);
+        startActivity(vernegocio_com_intent);
+    }
 }
+

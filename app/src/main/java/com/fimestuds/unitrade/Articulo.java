@@ -1,6 +1,9 @@
 package com.fimestuds.unitrade;
 
-public class Articulo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Articulo implements Parcelable {
     int id;
     String art_name;
     int type;
@@ -21,9 +24,43 @@ public class Articulo {
         this.imagen=imagen;
     }
 
-    public String toString() {
-        return "Articulo id=" + id + ", Nombre=" + art_name + ", Tipo=" + type + ",Costo=" + costo + "Desc="+ descripcion;
+
+
+
+    protected Articulo(Parcel in) {
+        art_name = in.readString();
+        type = in.readInt();
+        imagen = in.readString();
+        costo = in.readInt();
+        descripcion = in.readString();
+
+
     }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(art_name);
+        dest.writeInt(type);
+        dest.writeString(imagen);
+        dest.writeInt(costo);
+        dest.writeString(descripcion);
+
+    }
+    public static final Creator<Articulo> CREATOR = new Creator<Articulo>() {
+        @Override
+        public Articulo createFromParcel(Parcel in) {
+            return new Articulo(in);
+        }
+
+        @Override
+        public Articulo[] newArray(int size) {
+            return new Articulo[size];
+        }
+    };
 
     public int getId() {
         return id;

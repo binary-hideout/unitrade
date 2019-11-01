@@ -15,30 +15,43 @@ import java.util.List;
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ArticulosViewHolder> {
     private final List<Articulo> arrayarticulos;
+    private OnArticuloListener mOnArticuloListener;
 
-    RecyclerViewAdapter(List<Articulo> arrayarticulos) {
+    RecyclerViewAdapter(List<Articulo> arrayarticulos,  OnArticuloListener onArticuloListener) {
         this.arrayarticulos = arrayarticulos;
+        this.mOnArticuloListener = onArticuloListener;
     }
 
-    public class ArticulosViewHolder extends RecyclerView.ViewHolder {
+
+
+    public class ArticulosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;
         TextView Nombre;
         ImageView Imagencard;
         TextView descripcion;
+        OnArticuloListener onArticuloListener;
 
-        ArticulosViewHolder(View itemView) {
+
+        ArticulosViewHolder(View itemView, OnArticuloListener onArticuloListener) {
             super(itemView);
             cardView = (CardView) itemView.findViewById(R.id.cardView);
             Nombre = (TextView) itemView.findViewById(R.id.card_username);
             Imagencard = (ImageView) itemView.findViewById(R.id.carduser_img);
             descripcion=(TextView)itemView.findViewById(R.id.carduser_desc);
+            this.onArticuloListener = onArticuloListener;
+            itemView.setOnClickListener(this);
         }
-    }
+
+            @Override
+            public void onClick(View v) {
+                onArticuloListener.onArticuloClick(getAdapterPosition(), arrayarticulos.get(getAdapterPosition()));
+            }
+        }
 
     @Override
     public ArticulosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card, parent, false);
-        ArticulosViewHolder cvh = new ArticulosViewHolder(view);
+        ArticulosViewHolder cvh = new ArticulosViewHolder(view, mOnArticuloListener);
         return cvh;
     }
 
@@ -55,13 +68,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
                     .load(arrayarticulos.get(position).getImagen())
                     .into(holder.Imagencard);
 
-        }else if( arrayarticulos.get(position).getType()==1){
-
+        }else{
             holder.Imagencard.setImageResource(R.drawable.unitrade);
-        }
-        else if( arrayarticulos.get(position).getType()==2){
-
-            holder.Imagencard.setImageResource(R.drawable.zarpazo);
         }
 
     }
@@ -74,5 +82,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
     @Override
     public int getItemCount() {
         return arrayarticulos.size();
+    }
+    public interface OnArticuloListener {
+        void onArticuloClick(int position, Articulo articulo);
     }
 }
