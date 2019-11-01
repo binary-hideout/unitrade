@@ -69,7 +69,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
                     .into(holder.Imagencard);
 
         }else{
-            holder.Imagencard.setImageResource(R.drawable.unitrade);
+            holder.Imagencard.setImageResource(R.drawable.zarpazo);
         }
 
     }

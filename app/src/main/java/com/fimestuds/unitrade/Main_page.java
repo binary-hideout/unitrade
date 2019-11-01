@@ -52,6 +52,12 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
             }
         });
 
+        vender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                venderarts();
+            }
+        });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_inicio);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -78,9 +84,10 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         progressDialog.setMessage("Cargando");
         progressDialog.show();
 
+        //Falta corregir el whereEqualto porque si se deshace el comentario, no jala :(
         db.collection("articulos")
-                .orderBy("timestamp", Query.Direction.DESCENDING)
-                .whereEqualTo("visible", 1)
+                .orderBy("timestamp", Query.Direction.ASCENDING)
+                //.whereEqualTo("visible", 1)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -145,10 +152,15 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     @Override
     public void onArticuloClick(int position, Articulo articulo) {
         arrayarticulos.get(position);
-        //checar y mandar al negocio correspondiente
-        Intent vernegocio_com_intent = new Intent(this, Pantalla_venta.class);
-        vernegocio_com_intent.putExtra("articulo", (Parcelable) articulo);
-        startActivity(vernegocio_com_intent);
+        //checar y mandar al articulo correspondiente
+        Intent verart_intent = new Intent(this, Pantalla_venta.class);
+       // verart_intent.putExtra("articulo", (Parcelable) articulo);
+        startActivity(verart_intent);
+    }
+
+    public void venderarts(){
+        Intent venint = new Intent(this, Pantalla_venta.class);
+        startActivity(venint);
     }
 }
 
