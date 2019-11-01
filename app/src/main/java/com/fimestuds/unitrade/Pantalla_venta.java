@@ -27,6 +27,7 @@ public class Pantalla_venta extends AppCompatActivity {
     }
 
     public void contactarvendedor(){
-        Intent contactar = new Intent(this, Compra.class)
+        Intent contactar = new Intent(this, Compra.class);
+        startActivity(contactar);
     }
 }
