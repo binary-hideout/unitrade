@@ -159,7 +159,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     }
 
     public void venderarts(){
-        Intent venint = new Intent(this, Pantalla_venta.class);
+        Intent venint = new Intent(this, Vender_artic.class);
         startActivity(venint);
     }
 }
