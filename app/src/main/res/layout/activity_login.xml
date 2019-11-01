@@ -24,19 +24,33 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"></EditText>
 
 
-    <EditText
-        android:id="@+id/edtxt_contra_usu"
-        android:layout_width="380dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pssdlayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
         android:hint="Contraseña"
-        android:textColorHint="@android:color/holo_orange_dark"
-        android:inputType="textPassword"
         android:textColor="@android:color/black"
+        android:textColorHint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtxt_nom_usu"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/edtxt_nom_usu"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtxt_contra_usu"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtxt_nom_usu"></com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -70,11 +84,12 @@
         android:background="@drawable/botoncircular"
         android:backgroundTint="@android:color/holo_red_light"
         android:text="Ingresar"
-        android:textStyle="bold"
         android:textColor="@color/amarillotigre"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtxt_contra_usu" />
+        app:layout_constraintTop_toBottomOf="@+id/pssdlayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
