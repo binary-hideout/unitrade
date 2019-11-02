@@ -8,17 +8,19 @@ public class Articulo implements Parcelable {
     String art_name;
     int type;
     String descripcion;
-    int costo;
+    String costo;
     String imagen;
+    String celular;
 
 
-     Articulo(int id, String art_name, int type, String descripcion, int costo, String imagen) {
+     Articulo(int id, String art_name, int type, String descripcion, String costo, String imagen, String celular) {
         this.id = id;
         this.art_name = art_name;
         this.type= type;
         this.descripcion=descripcion;
         this.costo=costo;
         this.imagen=imagen;
+        this.celular=celular;
     }
 
     public Articulo(){
@@ -30,8 +32,9 @@ public class Articulo implements Parcelable {
         art_name = in.readString();
         type = in.readInt();
         imagen = in.readString();
-        costo = in.readInt();
+        costo = in.readString();
         descripcion = in.readString();
+        celular=in.readString();
 
     }
 
@@ -40,8 +43,9 @@ public class Articulo implements Parcelable {
         dest.writeString(art_name);
         dest.writeInt(type);
         dest.writeString(imagen);
-        dest.writeInt(costo);
+        dest.writeString(costo);
         dest.writeString(descripcion);
+        dest.writeString(celular);
 
     }
 
@@ -95,11 +99,11 @@ public class Articulo implements Parcelable {
         this.descripcion = descripcion;
     }
 
-    public int getCosto() {
+    public String getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(String costo) {
         this.costo = costo;
     }
 
@@ -109,5 +113,13 @@ public class Articulo implements Parcelable {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }
