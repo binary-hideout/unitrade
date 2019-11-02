@@ -10,12 +10,90 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="28dp"
+        android:text="Esta pantalla es para publicar articulos a vender"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="22sp"
-        android:textAlignment="center"
-        android:text="Esta pantalla es para publicar articulos a vender"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/vender_nombre"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="6dp"
+        android:hint="NOMBRE DEL PRODUCTO"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"></EditText>
+
+    <EditText
+        android:id="@+id/vender_precio"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:hint="Precio"
+        android:inputType="number"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vender_descripción"></EditText>
+
+
+    <EditText
+        android:id="@+id/ven_contacto"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="Celular"
+        android:inputType="phone"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vender_precio"
+        app:layout_constraintTop_toBottomOf="@+id/vender_descripción"></EditText>
+
+    <EditText
+        android:id="@+id/vender_descripción"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="6dp"
+        android:hint="DESCRIPCION"
+        android:maxLines="3"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vender_nombre"></EditText>
+
+    <Button
+        android:id="@+id/agregar_img"
+        android:layout_width="150dp"
+        android:background="@drawable/botoncircular"
+        android:backgroundTint="@android:color/darker_gray"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Agregar Imagen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vender_precio" />
+
+    <Button
+        android:id="@+id/btn_vender_post"
+        android:layout_width="150dp"
+        android:background="@drawable/botoncircular"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Publicar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/agregar_img" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
