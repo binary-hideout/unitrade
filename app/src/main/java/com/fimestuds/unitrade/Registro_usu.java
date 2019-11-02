@@ -40,6 +40,8 @@ public class Registro_usu extends AppCompatActivity {
         conf_pssd=findViewById(R.id.reg_contraconf_usu);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Cargando...");
+
+        getSupportActionBar().hide();
         //Firebase instances
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

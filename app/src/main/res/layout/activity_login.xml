@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
+        android:focusable="true"
+        android:nextFocusDown="@id/edtxt_contra_usu"
         android:hint="Email"
         android:textColorHint="@android:color/holo_orange_dark"
         android:textColor="@android:color/black"

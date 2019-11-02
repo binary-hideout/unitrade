@@ -85,6 +85,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         progressDialog.show();
 
         //Falta corregir el whereEqualto porque si se deshace el comentario, no jala :(
+
         db.collection("articulos")
                 .orderBy("timestamp", Query.Direction.ASCENDING)
                 //.whereEqualTo("visible", 1)
@@ -154,7 +155,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         arrayarticulos.get(position);
         //checar y mandar al articulo correspondiente
         Intent verart_intent = new Intent(this, Pantalla_venta.class);
-       // verart_intent.putExtra("articulo", (Parcelable) articulo);
+        verart_intent.putExtra("articulo", articulo);
         startActivity(verart_intent);
     }
 

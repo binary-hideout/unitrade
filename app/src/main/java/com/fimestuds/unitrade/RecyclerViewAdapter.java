@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ArticulosViewHolder> {
+class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ArticuloViewHolder> {
     private final List<Articulo> arrayarticulos;
     private OnArticuloListener mOnArticuloListener;
 
@@ -24,7 +24,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
 
 
 
-    public class ArticulosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ArticuloViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;
         TextView Nombre;
         ImageView Imagencard;
@@ -32,7 +32,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
         OnArticuloListener onArticuloListener;
 
 
-        ArticulosViewHolder(View itemView, OnArticuloListener onArticuloListener) {
+        ArticuloViewHolder(View itemView, OnArticuloListener onArticuloListener) {
             super(itemView);
             cardView = (CardView) itemView.findViewById(R.id.cardView);
             Nombre = (TextView) itemView.findViewById(R.id.card_username);
@@ -49,15 +49,16 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
         }
 
     @Override
-    public ArticulosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ArticuloViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card, parent, false);
-        ArticulosViewHolder cvh = new ArticulosViewHolder(view, mOnArticuloListener);
+        ArticuloViewHolder cvh = new ArticuloViewHolder(view, mOnArticuloListener);
         return cvh;
     }
 
     @Override
-    public void onBindViewHolder(ArticulosViewHolder holder, int position) {
+    public void onBindViewHolder(ArticuloViewHolder holder, int position) {
         holder.Nombre.setText(arrayarticulos.get(position).art_name);
+
 
         holder.descripcion.setText(arrayarticulos.get(position).descripcion);
 
@@ -83,6 +84,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
     public int getItemCount() {
         return arrayarticulos.size();
     }
+
     public interface OnArticuloListener {
         void onArticuloClick(int position, Articulo articulo);
     }

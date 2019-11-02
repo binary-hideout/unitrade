@@ -11,9 +11,6 @@ public class Articulo implements Parcelable {
     int costo;
     String imagen;
 
-    public Articulo(){
-
-    }
 
      Articulo(int id, String art_name, int type, String descripcion, int costo, String imagen) {
         this.id = id;
@@ -24,6 +21,8 @@ public class Articulo implements Parcelable {
         this.imagen=imagen;
     }
 
+    public Articulo(){
+    }
 
 
 
@@ -34,11 +33,6 @@ public class Articulo implements Parcelable {
         costo = in.readInt();
         descripcion = in.readString();
 
-
-    }
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     @Override
@@ -50,6 +44,13 @@ public class Articulo implements Parcelable {
         dest.writeString(descripcion);
 
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
     public static final Creator<Articulo> CREATOR = new Creator<Articulo>() {
         @Override
         public Articulo createFromParcel(Parcel in) {
