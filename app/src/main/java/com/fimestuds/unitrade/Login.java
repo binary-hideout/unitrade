@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity {
     private EditText nom_usu, contra_usu;
     private Button iniciar, registrarse;
     private String username, pssd;
+    private TextView changepssd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class Login extends AppCompatActivity {
         contra_usu=findViewById(R.id.edtxt_contra_usu);
         iniciar=findViewById(R.id.btn_iniciarses);
         registrarse=findViewById(R.id.btn_a_registrarse);
+        changepssd=findViewById(R.id.txt_change_pssd);
 
         iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +45,12 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 a_registro();
+            }
+        });
+        changepssd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_change_pssd();
             }
         });
 
@@ -73,6 +82,11 @@ public class Login extends AppCompatActivity {
     private void iniciodesesion(){
         Intent intentini = new Intent(this, Main_page.class);
         startActivity(intentini);
+        finish();
+    }
+    public void user_change_pssd(){
+        Intent change = new Intent(this, User_pssd.class);
+        startActivity(change);
         finish();
     }
     private void autenticar(){
