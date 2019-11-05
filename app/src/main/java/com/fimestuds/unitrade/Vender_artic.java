@@ -1,26 +1,57 @@
 package com.fimestuds.unitrade;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
 public class Vender_artic extends AppCompatActivity {
+    public static final int PICK_IMAGE_REQUEST=1;
+    private Uri imguri;
+
+
+
     private EditText edt_costo, ed_nombre, ed_descrip, contacto;
-    private Button vender, add_img;
+    private Button vender;
+    private ImageButton add_img;
+    private ImageView vistaprevia;
+    public ProgressBar ProgrBar;
+    //Firebase
+    FirebaseStorage storage;
+    StorageReference storageReference;
     private FirebaseFirestore db;
+    private DatabaseReference dbref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +63,49 @@ public class Vender_artic extends AppCompatActivity {
         contacto=findViewById(R.id.ven_contacto);
         vender=findViewById(R.id.btn_vender_post);
         add_img=findViewById(R.id.agregar_img);
+        vistaprevia=findViewById(R.id.img_vista_previa);
+        ProgrBar=findViewById(R.id.ProgBar);
 
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference("imgs_art");
         db = FirebaseFirestore.getInstance();
+        dbref= FirebaseDatabase.getInstance().getReference("imgs_art");
 
         vender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 VenderArticulo(v);
+               // uploadimage();
+            }
+        });
+        add_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_image();
             }
         });
 
+    }
+
+
+
+    public void add_image(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Selecciona una Imagen(de preferencia evita de galería)"), PICK_IMAGE_REQUEST);
+
+    }
+    //Checa que la imagen no este vacía antes de mostrarla
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==PICK_IMAGE_REQUEST && resultCode== RESULT_OK
+                && data!=null && data.getData()!= null){
+
+            imguri=data.getData();
+            Glide.with(this).load(imguri).apply(new RequestOptions().override(190, 200)).into(vistaprevia);
+        }
     }
 
     public void VenderArticulo(View view){
@@ -94,6 +158,43 @@ public class Vender_artic extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    //Subir las imagenes a Firebase
+    private void uploadimage(){
+        if(imguri!= null){
+
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+            +"."+getFileExtension(imguri));
+            fileReference.putFile(imguri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Vender_artic.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                    ProgrBar.setProgress((int) progress);
+                }
+            });
+        }else {
+            Toast.makeText(this, "No hay imagen seleccionada", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
         }

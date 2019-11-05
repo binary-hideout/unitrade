@@ -73,27 +73,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vender_nombre"></EditText>
 
-    <Button
-        android:id="@+id/agregar_img"
-        android:layout_width="150dp"
-        android:background="@drawable/botoncircular"
-        android:backgroundTint="@android:color/darker_gray"
+    <ProgressBar
+        android:id="@+id/ProgBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Agregar Imagen"
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btn_vender_post"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></ProgressBar>
+
+    <ImageButton
+        android:id="@+id/agregar_img"
+        android:layout_width="50dp"
+        android:src="@drawable/ic_add_a_photo_black_24dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/botoncircular"
+        android:backgroundTint="@color/amarillotigre"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vender_precio" />
+
+    <ImageView
+        android:id="@+id/img_vista_previa"
+        android:layout_width="190dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/agregar_img"
+        app:layout_constraintTop_toBottomOf="@+id/ven_contacto"></ImageView>
 
     <Button
         android:id="@+id/btn_vender_post"
         android:layout_width="150dp"
-        android:background="@drawable/botoncircular"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/botoncircular"
+        android:backgroundTint="@color/amarillotigre"
         android:text="Publicar"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/agregar_img" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
+        android:text="pesos"
+        app:layout_constraintStart_toEndOf="@+id/vender_precio"
+        app:layout_constraintTop_toBottomOf="@+id/vender_descripción" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
