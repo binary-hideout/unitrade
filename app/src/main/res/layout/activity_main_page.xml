@@ -68,7 +68,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
@@ -76,7 +75,6 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -89,20 +87,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <AdapterViewFlipper
-                android:id="@+id/flipper"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"></AdapterViewFlipper>
+      <AdapterViewFlipper
+          android:id="@+id/flipper"
+          android:layout_width="match_parent"
+          android:layout_height="150dp"></AdapterViewFlipper>
 
+   <ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_margin="8dp"
+    android:onClick="onFlipperArrowLeftClick"
+    android:padding="12dp"
+    android:src="@drawable/ic_arrow_back_red_24dp" />
 
-        </RelativeLayout>
+  <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_centerVertical="true"
+      android:layout_margin="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:onClick="onFlipperArrowRightClick"
+      android:padding="12dp"
+      android:src="@drawable/ic_arrow_forward_red_24dp" />
+  
+   </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-               android:id="@+id/recyclerView_inicio"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-               android:layout_marginBottom="40dp"></androidx.recyclerview.widget.RecyclerView>
+   <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recyclerView_inicio"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_marginBottom="40dp"></androidx.recyclerview.widget.RecyclerView>
 
  </androidx.appcompat.widget.LinearLayoutCompat>
      </androidx.core.widget.NestedScrollView>

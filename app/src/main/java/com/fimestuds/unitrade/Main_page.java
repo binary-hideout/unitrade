@@ -161,8 +161,18 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     public void setFlip_inicio(){
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayimagenes);
         flip_inicio.setAdapter(customAdapter);
-        flip_inicio.setFlipInterval(2700);
-        flip_inicio.setAutoStart(true);
+
+    }
+    public void onFlipperArrowLeftClick(View view) {
+        if (flip_inicio != null) {
+            flip_inicio.showPrevious();
+        }
+    }
+
+    public void onFlipperArrowRightClick(View view) {
+        if (flip_inicio != null) {
+            flip_inicio.showNext();
+        }
     }
 
     @Override
