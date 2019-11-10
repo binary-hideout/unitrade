@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,6 +34,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     private List<Imagen> arrayimagenes;
     private FirebaseFirestore db;
     FloatingActionButton vender;
+    SwipeRefreshLayout refreshLayout;
     RecyclerView recyclerView;
     Context context;
     public ImageView perfil;
@@ -43,6 +45,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         perfil=findViewById(R.id.btn_perfil);
         flip_inicio=findViewById(R.id.flipper);
         vender=findViewById(R.id.floatingvender);
+        refreshLayout=findViewById(R.id.refresh_layout);
         db=FirebaseFirestore.getInstance();
 
         perfil.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +55,13 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
             }
         });
 
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                addData();
+                addImages();
+            }
+        });
         vender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +93,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Cargando");
         progressDialog.show();
+        refreshLayout.setRefreshing(false);
 
         //Falta corregir el whereEqualto porque si se deshace el comentario, no jala :(
 
@@ -107,6 +118,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                                             Main_page.this
                                     );
                             recyclerView.setAdapter(adapter);
+
                         } else {
                             Toast.makeText(Main_page.this, "Error", Toast.LENGTH_SHORT).show();
                         }
@@ -125,6 +137,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             arrayimagenes = new ArrayList<>();
+                            refreshLayout.setRefreshing(false);
                             //  int position =0;
                             for (DocumentSnapshot doc : task.getResult()) {
                                 Imagen imagen = doc.toObject(Imagen.class);
@@ -133,7 +146,9 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                             }
                             setFlip_inicio();
 
+
                         } else {
+                            refreshLayout.setRefreshing(false);
                             Toast.makeText(Main_page.this, "No hay imagenes que cargar", Toast.LENGTH_LONG).show();
                         }
 

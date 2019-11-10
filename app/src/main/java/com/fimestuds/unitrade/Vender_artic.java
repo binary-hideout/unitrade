@@ -66,10 +66,10 @@ public class Vender_artic extends AppCompatActivity {
         vistaprevia=findViewById(R.id.img_vista_previa);
         ProgrBar=findViewById(R.id.ProgBar);
 
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference("imgs_art");
+        //storage = FirebaseStorage.getInstance();
+        //storageReference = storage.getReference("imgs_art");
         db = FirebaseFirestore.getInstance();
-        dbref= FirebaseDatabase.getInstance().getReference("imgs_art");
+       // dbref= FirebaseDatabase.getInstance().getReference("imgs_art");
 
         vender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +93,7 @@ public class Vender_artic extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Selecciona una Imagen(de preferencia evita de galería)"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Selecciona una Imagen"), PICK_IMAGE_REQUEST);
 
     }
     //Checa que la imagen no este vacía antes de mostrarla
@@ -160,7 +160,7 @@ public class Vender_artic extends AppCompatActivity {
         }
     }
 
-    private String getFileExtension(Uri uri) {
+   /* private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
@@ -195,6 +195,6 @@ public class Vender_artic extends AppCompatActivity {
             Toast.makeText(this, "No hay imagen seleccionada", Toast.LENGTH_SHORT).show();
         }
 
-    }
+    }*/
 
         }
