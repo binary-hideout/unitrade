@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#2962ff</color>
     <color name="colorPrimaryDark">#0039cb</color>
-    <color name="colorAccent">#d81b60</color>
+    <color name="colorAccent">#FFDD33</color>
     <color name="amarillotigre">#FFDD33</color>
+    <color name="azul_leve">#00bcd4</color>
 </resources>
