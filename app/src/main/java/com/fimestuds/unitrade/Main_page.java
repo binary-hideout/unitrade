@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterViewFlipper;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ import java.util.List;
 
 public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.OnArticuloListener{
     private AdapterViewFlipper flip_inicio;
+    private EditText buscadortxt;
+    private ImageButton buscar;
     private List<Articulo> arrayarticulos;
     private List<Imagen> arrayimagenes;
     private FirebaseFirestore db;
@@ -44,6 +47,8 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         setContentView(R.layout.activity_main_page);
         perfil=findViewById(R.id.btn_perfil);
         flip_inicio=findViewById(R.id.flipper);
+        buscadortxt=findViewById(R.id.edt_buscador);
+        buscar=findViewById(R.id.btn_buscar);
         vender=findViewById(R.id.floatingvender);
         refreshLayout=findViewById(R.id.refresh_layout);
         db=FirebaseFirestore.getInstance();
@@ -68,6 +73,12 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                 venderarts();
             }
         });
+        buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buscarpost();
+            }
+        });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_inicio);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
@@ -87,6 +98,9 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         startActivity(intentper);
     }
 
+    public void buscarpost(){
+        //Buscar por descripcion y/o titulo
+    }
     private void addData() {
         // Los datos en Firestore deben tener la estructura de modelo en JSON.
 
