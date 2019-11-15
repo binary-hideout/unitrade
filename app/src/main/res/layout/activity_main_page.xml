@@ -17,41 +17,39 @@
         >
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="60dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp">
 
                 <EditText
                     android:id="@+id/edt_buscador"
-
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="1dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="3dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/buscador"
                     android:backgroundTint="@android:color/white"
-                    android:ems="10"
                     android:hint="Busca aquí"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_buscar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></EditText>
-
-                <TextView
-                    android:id="@+id/textsaludo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Inicio"
-                    android:textColor="@android:color/holo_orange_light"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
+                <ImageButton
+                    android:id="@+id/btn_buscar"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_perfil"
-                    app:layout_constraintStart_toEndOf="@+id/btn_buscar" />
+                    app:layout_constraintStart_toEndOf="@+id/edt_buscador"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/botoncircular"
+                    android:backgroundTint="@android:color/white"
+                    app:srcCompat="@drawable/ic_search_black_24dp" />
+
 
                 <ImageView
 
@@ -68,15 +66,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/btn_buscar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/edt_buscador"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

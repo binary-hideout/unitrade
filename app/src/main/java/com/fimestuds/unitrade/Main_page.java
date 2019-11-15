@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -45,6 +47,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+        getSupportActionBar().hide();
         perfil=findViewById(R.id.btn_perfil);
         flip_inicio=findViewById(R.id.flipper);
         buscadortxt=findViewById(R.id.edt_buscador);
@@ -76,7 +79,14 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buscarpost();
+                String textobuscar=buscadortxt.getText().toString().trim();
+                if(textobuscar.isEmpty()){
+                    Toast.makeText(Main_page.this, "No hay texto a buscar", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    buscarpost(textobuscar);
+                }
+
             }
         });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_inicio);
@@ -98,8 +108,23 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         startActivity(intentper);
     }
 
-    public void buscarpost(){
-        //Buscar por descripcion y/o titulo
+    public void buscarpost(final String txt){
+        //Buscar por titulo
+        db.collection("articulos")
+                .orderBy("art_name").startAt(txt).endAt(txt + "\uf8ff")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(Main_page.this, "Se encontro el post "+ txt, Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(Main_page.this, "No se encontro el post", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
     }
     private void addData() {
         // Los datos en Firestore deben tener la estructura de modelo en JSON.
