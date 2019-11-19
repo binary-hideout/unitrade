@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class Articulo implements Parcelable {
     int id;
+    String user_id;
     String art_name;
     int type;
     String descripcion;
@@ -13,8 +14,9 @@ public class Articulo implements Parcelable {
     String celular;
 
 
-     Articulo(int id, String art_name, int type, String descripcion, String costo, String imagen, String celular) {
+     Articulo(int id, String user_id, String art_name, int type, String descripcion, String costo, String imagen, String celular) {
         this.id = id;
+        this.user_id = user_id;
         this.art_name = art_name;
         this.type= type;
         this.descripcion=descripcion;
@@ -29,6 +31,7 @@ public class Articulo implements Parcelable {
 
 
     protected Articulo(Parcel in) {
+         user_id = in.readString();
         art_name = in.readString();
         type = in.readInt();
         imagen = in.readString();
@@ -41,6 +44,7 @@ public class Articulo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(art_name);
+        dest.writeString(user_id);
         dest.writeInt(type);
         dest.writeString(imagen);
         dest.writeString(costo);
@@ -73,6 +77,14 @@ public class Articulo implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getArt_name() {

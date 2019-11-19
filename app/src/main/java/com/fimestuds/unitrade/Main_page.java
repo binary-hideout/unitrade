@@ -70,6 +70,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                 addImages();
             }
         });
+
         vender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +127,7 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
                 });
 
     }
+
     private void addData() {
         // Los datos en Firestore deben tener la estructura de modelo en JSON.
 
