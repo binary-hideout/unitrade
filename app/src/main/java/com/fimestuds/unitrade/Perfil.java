@@ -52,6 +52,13 @@ public class Perfil extends AppCompatActivity implements RecyclerViewAdapter.OnA
 
         String user_id = user.getUid();
 
+        cierre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogoalerta();
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_inicio);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
