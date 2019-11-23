@@ -29,6 +29,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
         TextView Nombre;
         ImageView Imagencard;
         TextView descripcion;
+        TextView rating;
         OnArticuloListener onArticuloListener;
 
 
@@ -38,6 +39,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
             Nombre = (TextView) itemView.findViewById(R.id.card_username);
             Imagencard = (ImageView) itemView.findViewById(R.id.carduser_img);
             descripcion=(TextView)itemView.findViewById(R.id.carduser_desc);
+            rating=itemView.findViewById(R.id.rating);
             this.onArticuloListener = onArticuloListener;
             itemView.setOnClickListener(this);
         }
@@ -59,7 +61,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Artic
     public void onBindViewHolder(ArticuloViewHolder holder, int position) {
         holder.Nombre.setText(arrayarticulos.get(position).art_name);
 
-
+        holder.rating.setText(( "Rating: "+arrayarticulos.get(position).rating));
         holder.descripcion.setText(arrayarticulos.get(position).descripcion);
 
 

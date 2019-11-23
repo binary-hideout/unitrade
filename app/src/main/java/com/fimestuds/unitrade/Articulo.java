@@ -5,22 +5,27 @@ import android.os.Parcelable;
 
 public class Articulo implements Parcelable {
     int id;
+    String user_id;
     String art_name;
     int type;
     String descripcion;
     String costo;
     String imagen;
     String celular;
+    int rating;
 
 
-     Articulo(int id, String art_name, int type, String descripcion, String costo, String imagen, String celular) {
+     Articulo(int id, String user_id, String art_name, int type, String descripcion, String costo,
+              String imagen, String celular, int rating ) {
         this.id = id;
+        this.user_id = user_id;
         this.art_name = art_name;
         this.type= type;
         this.descripcion=descripcion;
         this.costo=costo;
         this.imagen=imagen;
         this.celular=celular;
+        this.rating=rating;
     }
 
     public Articulo(){
@@ -29,23 +34,27 @@ public class Articulo implements Parcelable {
 
 
     protected Articulo(Parcel in) {
+         user_id = in.readString();
         art_name = in.readString();
         type = in.readInt();
         imagen = in.readString();
         costo = in.readString();
         descripcion = in.readString();
         celular=in.readString();
+        rating=in.readInt();
 
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(art_name);
+        dest.writeString(user_id);
         dest.writeInt(type);
         dest.writeString(imagen);
         dest.writeString(costo);
         dest.writeString(descripcion);
         dest.writeString(celular);
+        dest.writeInt(rating);
 
     }
 
@@ -73,6 +82,14 @@ public class Articulo implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getArt_name() {
@@ -121,5 +138,13 @@ public class Articulo implements Parcelable {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

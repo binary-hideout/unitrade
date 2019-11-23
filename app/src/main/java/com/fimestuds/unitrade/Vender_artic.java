@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -48,6 +50,7 @@ public class Vender_artic extends AppCompatActivity {
     private ImageView vistaprevia;
     public ProgressBar ProgrBar;
     //Firebase
+    private FirebaseAuth mAuth;
     FirebaseStorage storage;
     StorageReference storageReference;
     private FirebaseFirestore db;
@@ -114,6 +117,12 @@ public class Vender_artic extends AppCompatActivity {
         String contac = this.contacto.getText().toString().trim();
         String desc = this.ed_descrip.getText().toString().trim();
 
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        String user_id = user.getUid();
+
         if (nombre.isEmpty() || costo.isEmpty() ||
                 contac.isEmpty() || desc.isEmpty()) {
             Toast.makeText(this, "Rellene todos los campos", Toast.LENGTH_SHORT).show();
@@ -124,8 +133,11 @@ public class Vender_artic extends AppCompatActivity {
             data.put("costo", costo);
             data.put("celular", contac);
             data.put("descripcion", desc);
+
+            data.put("user_id", user_id);
+
             //Falta imagen tmb, no se muy bien qp
-            // Este campo es importante, hará que no se muestre en la app hasta su aprobacióno podemos dejarlo en 1 para que se vea
+            // Este campo es importante, hará que no se muestre en la app hasta su aprobación o podemos dejarlo en 1 para que se vea
             data.put("visible", 1);
             data.put("type", 1);
             data.put("imagen", "");
@@ -150,6 +162,7 @@ public class Vender_artic extends AppCompatActivity {
                                 Toast.makeText(Vender_artic.this,
                                         "Su publicación fue enviada",
                                         Toast.LENGTH_LONG).show();
+                                onBackPressed();
                             } else {
                                 Toast.makeText(Vender_artic.this,
                                         "Algo no fue bien, intente de nuevo más tarde",
