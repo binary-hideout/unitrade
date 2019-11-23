@@ -50,7 +50,7 @@ public class Vender_artic extends AppCompatActivity {
     private ImageView vistaprevia;
     public ProgressBar ProgrBar;
     //Firebase
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
     FirebaseStorage storage;
     StorageReference storageReference;
     private FirebaseFirestore db;
@@ -68,6 +68,8 @@ public class Vender_artic extends AppCompatActivity {
         add_img=findViewById(R.id.agregar_img);
         vistaprevia=findViewById(R.id.img_vista_previa);
         ProgrBar=findViewById(R.id.ProgBar);
+        mAuth = FirebaseAuth.getInstance();
+
 
         //storage = FirebaseStorage.getInstance();
         //storageReference = storage.getReference("imgs_art");
@@ -116,10 +118,9 @@ public class Vender_artic extends AppCompatActivity {
         String costo = this.edt_costo.getText().toString().trim();
         String contac = this.contacto.getText().toString().trim();
         String desc = this.ed_descrip.getText().toString().trim();
-
-
-        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+
+
 
         String user_id = user.getUid();
 
@@ -141,6 +142,7 @@ public class Vender_artic extends AppCompatActivity {
             data.put("visible", 1);
             data.put("type", 1);
             data.put("imagen", "");
+            data.put("rating", 5);
 
             final ProgressDialog dialog = new ProgressDialog(this);
             dialog.setMessage("Cargando");

@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_unitrade_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".User_pssd"></activity>
-        <activity android:name=".Vender_artic"
+        <activity android:name=".Mis_productos"></activity>
+        <activity android:name=".User_pssd" />
+        <activity
+            android:name=".Vender_artic"
             android:label="@string/title_activity_vender_art"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Compra" />

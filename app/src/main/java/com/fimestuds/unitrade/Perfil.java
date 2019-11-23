@@ -29,26 +29,25 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Perfil extends AppCompatActivity implements RecyclerViewAdapter.OnArticuloListener{
-    private Button cierre;
+public class Perfil extends AppCompatActivity {
+    private Button cierre, productos;
     private TextView saludo;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private List<Articulo> mis_articulos;
-    SwipeRefreshLayout refreshLayout;
-    RecyclerView recyclerView;
-    private Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         cierre=findViewById(R.id.btn_cierre);
+        productos=findViewById(R.id.btn_mis_productos);
         saludo=findViewById(R.id.saludo);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         db=FirebaseFirestore.getInstance();
         saludo.setText("¡Hola "+user.getEmail()+"!");
+
 
         String user_id = user.getUid();
 
@@ -58,13 +57,16 @@ public class Perfil extends AppCompatActivity implements RecyclerViewAdapter.OnA
                 dialogoalerta();
             }
         });
+        productos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verproductos();
+            }
+        });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_inicio);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(layoutManager);
 
-        addData(user_id);
+
+
     }
 
 
@@ -88,6 +90,11 @@ public class Perfil extends AppCompatActivity implements RecyclerViewAdapter.OnA
         });
         builder.create().show();
     }
+    private void verproductos(){
+        Intent prodintent=new Intent(this, Mis_productos.class);
+        startActivity(prodintent);
+    }
+
     private void cerrar_sesion(){
         FirebaseAuth.getInstance().signOut();
 
@@ -96,57 +103,7 @@ public class Perfil extends AppCompatActivity implements RecyclerViewAdapter.OnA
         startActivity(intent);
     }
 
-    private void addData(final String user_id){
-
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Cargando");
-        progressDialog.show();
 
 
 
-        db.collection("articulos")
-                .orderBy("user_id", Query.Direction.ASCENDING)
-                //.whereEqualTo("visible", 1)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            mis_articulos = new ArrayList<>();
-
-                            for (DocumentSnapshot doc : task.getResult()) {
-                                // Se obtienen los articulos realizados por el usuario
-                                if(doc.get("user_id").equals(user_id)){
-                                    Articulo articulo = doc.toObject(Articulo.class);
-                                    mis_articulos.add(articulo);
-
-                                }
-                            }
-
-                            RecyclerViewAdapter adapter =
-                                    new RecyclerViewAdapter(
-                                            mis_articulos,
-                                            Perfil.this
-                                    );
-                            recyclerView.setAdapter(adapter);
-
-                        } else {
-                            Toast.makeText(Perfil.this, "Error", Toast.LENGTH_SHORT).show();
-                        }
-
-                        progressDialog.dismiss();
-                    }
-                });
-    }
-
-
-    @Override
-    public void onArticuloClick(int position, Articulo articulo) {
-        mis_articulos.get(position);
-        //checar y mandar al articulo correspondiente
-        Intent verart_intent = new Intent(this, Pantalla_venta.class);
-        verart_intent.putExtra("articulo", articulo);
-        startActivity(verart_intent);
-    }
 }

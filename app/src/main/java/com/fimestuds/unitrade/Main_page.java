@@ -136,10 +136,11 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         progressDialog.show();
         refreshLayout.setRefreshing(false);
 
-        //Falta corregir el whereEqualto porque si se deshace el comentario, no jala :(
+        //Falta corregir el whereEqualto porque no jala :(
+
 
         db.collection("articulos")
-                .orderBy("timestamp", Query.Direction.ASCENDING)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 //.whereEqualTo("visible", 1)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

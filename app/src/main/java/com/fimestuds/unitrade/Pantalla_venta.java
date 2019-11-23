@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 public class Pantalla_venta extends AppCompatActivity {
     private Button comprar;
     private ImageView imagen;
-    private TextView costo, descripcion, art_name, rating;
+    private TextView costo, descripcion, arti_name, rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class Pantalla_venta extends AppCompatActivity {
         imagen=findViewById(R.id.img_venta);
         costo=findViewById(R.id.pv_costo);
         descripcion=findViewById(R.id.descripcion);
-        art_name=findViewById(R.id.art_nombre);
+        arti_name=findViewById(R.id.art_nombre);
         rating=findViewById(R.id.rating_art);
 
         final Articulo articulo_venta = getIntent().getParcelableExtra("articulo");
@@ -32,7 +32,7 @@ public class Pantalla_venta extends AppCompatActivity {
         Glide.with(this).load(articulo_venta.getImagen()).into(imagen);
         costo.setText("$ "+articulo_venta.getCosto());
         descripcion.setText(articulo_venta.getDescripcion());
-        art_name.setText(articulo_venta.getArt_name());
+        arti_name.setText("'"+articulo_venta.getUser_id()+"'");
         int r=articulo_venta.getRating();
 
         rating.setText("Rating: "+ r);
