@@ -227,11 +227,10 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
         startActivity(venint);
     }
 
-    public void encontrarArticulos() {
-        //Recibir parametro de x tipo de dato
-        //Levantar query para buscar en la base de datos
-        //Retornar el resultado
-        
+
+
+    public void filters() {
+
     }
 }
 
