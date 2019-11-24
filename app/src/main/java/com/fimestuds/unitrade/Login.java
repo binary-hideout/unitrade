@@ -84,11 +84,13 @@ public class Login extends AppCompatActivity {
         startActivity(intentini);
         finish();
     }
+
     public void user_change_pssd(){
         Intent change = new Intent(this, User_pssd.class);
         startActivity(change);
         finish();
     }
+
     private void autenticar(){
 
         final String pssd = this.contra_usu.getText().toString().trim();
@@ -104,8 +106,8 @@ public class Login extends AppCompatActivity {
 
                         FirebaseUser user = mAuth.getCurrentUser();
                         // user.getDisplayName();
-                        iniciodesesion(); }
-                    else {
+                        iniciodesesion();
+                    } else {
                         // If sign in fails, display a message to the user.
 
                         Toast.makeText(Login.this, "Autenticacion fallida",
@@ -113,9 +115,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
             });
-
         }
-
     }
 
 

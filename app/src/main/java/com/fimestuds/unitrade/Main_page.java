@@ -102,8 +102,6 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
 
     }
 
-
-
     public void verperfil(){
         Intent intentper = new Intent(this, Perfil.class );
         startActivity(intentper);
@@ -229,6 +227,12 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
     public void venderarts(){
         Intent venint = new Intent(this, Vender_artic.class);
         startActivity(venint);
+    }
+
+
+
+    public void filters() {
+
     }
 }
 
