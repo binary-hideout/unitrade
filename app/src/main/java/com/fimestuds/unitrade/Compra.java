@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide;
 public class Compra extends AppCompatActivity {
     public static final int REQUEST_CALL = 1;
     private ImageView img_art, whats;
-    private TextView costo, nombre, rating, cel;
+    private TextView costo, nombre, rating, cel, txtwha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class Compra extends AppCompatActivity {
         rating=findViewById(R.id.comprar_rating_art);
         cel=findViewById(R.id.comprar_contacto_art);
         whats=findViewById(R.id.imgbtn_whatsapp);
+        txtwha=findViewById(R.id.mensajewha);
+        txtwha.setText(R.string.mensajewha);
 
         final Articulo articulo_venta = getIntent().getParcelableExtra("articulo");
         nombre.setText(articulo_venta.getArt_name());
@@ -47,6 +49,12 @@ public class Compra extends AppCompatActivity {
         });
 
         whats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whatsapp(v);
+            }
+        });
+        txtwha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 whatsapp(v);

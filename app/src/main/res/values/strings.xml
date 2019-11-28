@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">UniTrade</string>
     <string name="title_activity_vender_art">Vender_art</string>
+    <string name="mensajewha"> <u>Enviar whatsapp</u>.</string>
 </resources>

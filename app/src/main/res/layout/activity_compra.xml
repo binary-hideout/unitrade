@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Confirmar compra"
+        android:text="Contactar Vendedor"
         android:textAlignment="center"
         android:textColor="@android:color/holo_red_light"
         android:textSize="28sp"
@@ -83,10 +83,23 @@
         android:id="@+id/imgbtn_whatsapp"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/wha"
-        app:layout_constraintEnd_toStartOf="@+id/comprar_contacto_art"
+        app:layout_constraintStart_toEndOf="@+id/mensajewha"
+        app:layout_constraintTop_toBottomOf="@+id/comprar_contacto_art"></ImageView>
+
+    <TextView
+        android:id="@+id/mensajewha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comprar_rating_art"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/comprar_contacto_art" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
