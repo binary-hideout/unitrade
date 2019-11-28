@@ -38,7 +38,7 @@ public class Compra extends AppCompatActivity {
         Glide.with(this).load(articulo_venta.getImagen()).into(img_art);
         costo.setText("$"+articulo_venta.getCosto());
         rating.setText("Rating: "+articulo_venta.getRating());
-        cel.setText(articulo_venta.getCelular());
+        cel.setText("Llamar a: "+articulo_venta.getCelular());
         cel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
