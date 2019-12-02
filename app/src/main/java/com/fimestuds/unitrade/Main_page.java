@@ -231,8 +231,41 @@ public class Main_page extends AppCompatActivity implements RecyclerViewAdapter.
 
 
 
-    public void filters() {
+    public void filtrarRating(View view) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Cargando");
+        progressDialog.show();
+        refreshLayout.setRefreshing(false);
 
+        db.collection("articulos")
+                .orderBy("rating", Query.Direction.DESCENDING)
+                //.whereEqualTo("visible", 1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            arrayarticulos = new ArrayList<>();
+
+                            for (DocumentSnapshot doc : task.getResult()) {
+                                Articulo articulo = doc.toObject(Articulo.class);
+                                arrayarticulos.add(articulo);
+                            }
+
+                            RecyclerViewAdapter adapter =
+                                    new RecyclerViewAdapter(
+                                            arrayarticulos,
+                                            Main_page.this
+                                    );
+                            recyclerView.setAdapter(adapter);
+
+                        } else {
+                            Toast.makeText(Main_page.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+
+                        progressDialog.dismiss();
+                    }
+                });
     }
 }
 
